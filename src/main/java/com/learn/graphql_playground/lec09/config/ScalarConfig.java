@@ -10,7 +10,7 @@ import graphql.scalars.ExtendedScalars;
 public class ScalarConfig {
 
 	@Bean
-	public RuntimeWiringConfigurer configurer() {
+	RuntimeWiringConfigurer configurer() {
 		return config -> config
 				.scalar(ExtendedScalars.GraphQLLong)
 				.scalar(ExtendedScalars.GraphQLByte)
