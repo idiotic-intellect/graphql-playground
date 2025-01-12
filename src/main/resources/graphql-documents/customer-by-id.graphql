@@ -1,0 +1,18 @@
+
+query GetCustomerById($id: ID!) {
+	customerById(id: $id) {
+		type: __typename
+		... CustomerData
+		... on CustomerNotFound {
+			id
+			message
+		}
+	}
+}
+
+fragment CustomerData on Customer{
+	id
+	name
+	age
+	city
+}

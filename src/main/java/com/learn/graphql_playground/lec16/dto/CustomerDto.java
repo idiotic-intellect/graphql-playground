@@ -1,4 +1,4 @@
-package com.learn.graphql_playground.lec14.dto;
+package com.learn.graphql_playground.lec16.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "create")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CustomerDto {
+public class CustomerDto implements CustomerResponse {
 	private Integer id; 
 	
 	private String name; 

@@ -1,6 +1,6 @@
-package com.learn.graphql_playground.lec14.dto;
+package com.learn.graphql_playground.lec16.serverapp.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.data.annotation.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "create")
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class CustomerDto {
+public class Customer{
+	@Id 
 	private Integer id; 
 	
 	private String name; 
 	
-	private Integer age;
+	private Integer age; 
 	
 	private String city; 
 }
