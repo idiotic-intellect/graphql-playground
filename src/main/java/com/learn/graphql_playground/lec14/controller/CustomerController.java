@@ -1,4 +1,4 @@
-package com.learn.graphql_playground.lec13.controller;
+package com.learn.graphql_playground.lec14.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -6,9 +6,9 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import com.learn.graphql_playground.lec13.dto.CustomerDto;
-import com.learn.graphql_playground.lec13.dto.DeleteResponseDto;
-import com.learn.graphql_playground.lec13.service.CustomerService;
+import com.learn.graphql_playground.lec14.dto.CustomerDto;
+import com.learn.graphql_playground.lec14.dto.DeleteResponseDto;
+import com.learn.graphql_playground.lec14.service.CustomerService;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

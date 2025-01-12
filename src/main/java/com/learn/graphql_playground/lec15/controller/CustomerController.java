@@ -1,4 +1,4 @@
-package com.learn.graphql_playground.lec13.controller;
+package com.learn.graphql_playground.lec15.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -6,10 +6,12 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import com.learn.graphql_playground.lec13.dto.CustomerDto;
-import com.learn.graphql_playground.lec13.dto.DeleteResponseDto;
-import com.learn.graphql_playground.lec13.service.CustomerService;
+import com.learn.graphql_playground.lec15.dto.CustomerDto;
+import com.learn.graphql_playground.lec15.dto.CustomerNotFound;
+import com.learn.graphql_playground.lec15.dto.DeleteResponseDto;
+import com.learn.graphql_playground.lec15.service.CustomerService;
 
+import graphql.schema.DataFetchingEnvironment;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -20,13 +22,18 @@ public class CustomerController {
 	private CustomerService customerService;
 	
 	@QueryMapping("customers")
-	public Flux<CustomerDto> getAllCustomers() {
+	public Flux<CustomerDto> getAllCustomers(DataFetchingEnvironment environment) {
+		var callerId = environment.getGraphQlContext().getOrDefault("caller-id", "");
+		System.out.println("CALLERID: " + callerId);
 		return this.customerService.getAllCustomers();
 	}
 	
 	@QueryMapping("customerById")
-	public Mono<CustomerDto> getCustomerById(@Argument("id") Integer customerId) {
-		return this.customerService.getCustomerById(customerId);
+	public Mono<Object> getCustomerById(@Argument("id") Integer customerId) {
+//		throw new RuntimeException("Some issue on server");
+		return this.customerService.getCustomerById(customerId)
+				.cast(Object.class)
+				.switchIfEmpty(Mono.just(CustomerNotFound.create(customerId, "Customer not present")));
 	}
 	
 	@MutationMapping("createCustomer")
