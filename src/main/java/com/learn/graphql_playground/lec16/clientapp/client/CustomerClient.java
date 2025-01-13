@@ -35,6 +35,7 @@ public class CustomerClient {
 		return this.client.document(query).execute();
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public Mono<GenericResponse> getCustomerById1(Integer id) {
 		return this.client.documentName("customer-by-id")
 				.variable("id", id)

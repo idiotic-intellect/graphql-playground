@@ -32,12 +32,15 @@ public class ClientDemo implements CommandLineRunner{
 		
 		
 		getAllCustomers()
+		.then(rawQueryExec())
 		.then(createNewCustomer())
 		.then(getAllCustomers())
 		.then(updateExistingCustomer())
 		.then(getAllCustomers())
 		.then(deleteCustomerById(4))
 		.then(getAllCustomers())
+		.then(getCustomerById())
+		.then(getCustomerById(3))
 		.subscribe();
 	}
 	
@@ -60,7 +63,7 @@ public class ClientDemo implements CommandLineRunner{
 	}
 	
 	private Mono<Void> getCustomerById() {
-		return this.executor("File Query Exec Starting", "File Query Exec Completed", this.customerClient.getCustomerByIdWithUnion(13));
+		return this.executor("File Query Exec Starting", "File Query Exec Completed", this.customerClient.getCustomerByIdWithUnion(3));
 	}
 	
 	private Mono<Void> getAllCustomers() {

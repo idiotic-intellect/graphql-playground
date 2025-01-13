@@ -39,7 +39,7 @@ public class CustomerService {
 				.map(EntityDtoUtil::toEntity)
 				.flatMap(this.customerRepo::save)
 				.map(EntityDtoUtil::toDto)
-				.doOnNext(customer -> this.eventService.emitCustomerEvents(new CustomerEvent().create(customer.getId(), Action.CREATED)));
+				.doOnNext(customer -> this.eventService.emitCustomerEvents(CustomerEvent.create(customer.getId(), Action.CREATED)));
 	}
 	
 	public Mono<CustomerDto> updateExistingCustomer(Integer id, CustomerDto customerDto) {
@@ -47,13 +47,13 @@ public class CustomerService {
 				.map(cu -> EntityDtoUtil.toEntity(id, customerDto))
 				.flatMap(this.customerRepo::save)
 				.map(EntityDtoUtil::toDto)
-				.doOnNext(customer -> this.eventService.emitCustomerEvents(new CustomerEvent().create(id, Action.UPDATED)));
+				.doOnNext(customer -> this.eventService.emitCustomerEvents(CustomerEvent.create(id, Action.UPDATED)));
 	}
 	
 	public Mono<DeleteResponseDto> deleteExistingCustomer(Integer id) {
 		return this.customerRepo.findById(id)
 				.flatMap(cu -> this.customerRepo.deleteById(id)
-						.doOnSuccess(customer -> this.eventService.emitCustomerEvents(new CustomerEvent().create(id, Action.DELETED)))
+						.doOnSuccess(customer -> this.eventService.emitCustomerEvents(CustomerEvent.create(id, Action.DELETED)))
 						.thenReturn(DeleteResponseDto.create(id, Status.SUCCESS))
 						.onErrorReturn(DeleteResponseDto.create(id,Status.FAILURE))
 				);

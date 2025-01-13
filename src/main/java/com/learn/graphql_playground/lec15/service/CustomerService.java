@@ -7,7 +7,6 @@ import com.learn.graphql_playground.lec15.dto.CustomerDto;
 import com.learn.graphql_playground.lec15.dto.DeleteResponseDto;
 import com.learn.graphql_playground.lec15.dto.Status;
 import com.learn.graphql_playground.lec15.exceptions.ApplicationErrors;
-import com.learn.graphql_playground.lec15.exceptions.ApplicationException;
 import com.learn.graphql_playground.lec15.repository.CustomerRepository;
 import com.learn.graphql_playground.lec15.util.EntityDtoUtil;
 

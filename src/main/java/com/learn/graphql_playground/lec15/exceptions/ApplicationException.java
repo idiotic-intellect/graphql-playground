@@ -6,6 +6,7 @@ import org.springframework.graphql.execution.ErrorType;
 
 public class ApplicationException extends RuntimeException {
 
+	private static final long serialVersionUID = 1L;
 	private final ErrorType errorType;
 	private final String message;
 	private final Map<String, Object> extensions;

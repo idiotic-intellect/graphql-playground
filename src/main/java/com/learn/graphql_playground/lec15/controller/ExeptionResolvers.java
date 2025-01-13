@@ -1,9 +1,7 @@
 package com.learn.graphql_playground.lec15.controller;
 
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.graphql.execution.DataFetcherExceptionResolver;
 import org.springframework.graphql.execution.ErrorType;

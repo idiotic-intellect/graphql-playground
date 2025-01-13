@@ -28,16 +28,16 @@ public class GraphqlCrudTest {
 	@Test
 	@Order(1)
 	public void getAllCustomers() {
-		var document = """
-				query {
-					customers {
-						id
-						name
-						age
-						city
-					}
-				}
-				""";
+//		var document = """
+//				query {
+//					customers {
+//						id
+//						name
+//						age
+//						city
+//					}
+//				}
+//				""";
 		this.tester.documentName("crud-operations").operationName("GetAll").execute()
 					.path("response").entityList(Object.class).hasSize(5)
 					.path("response.[0].name").entity(String.class).isEqualTo("Ram");
